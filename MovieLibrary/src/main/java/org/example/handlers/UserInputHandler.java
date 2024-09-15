@@ -1,5 +1,6 @@
 package org.example.handlers;
 
+import org.example.models.Actor;
 import org.example.models.MenuOptions;
 
 import java.util.Scanner;
@@ -47,5 +48,10 @@ public class UserInputHandler {
 
     }
 
+    public static Actor getActorFromUser() {
+        System.out.println("Type an actor: ");
+        String[] actors = scanner.nextLine().split(" ");
+        return new Actor(actors[0], actors[1]);
+    }
 
 }

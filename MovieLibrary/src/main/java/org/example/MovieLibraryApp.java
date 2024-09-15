@@ -12,17 +12,23 @@ public class MovieLibraryApp {
         MovieLibrary movieLibrary = new MovieLibrary();
         movieLibrary.fillMovieList();
 
-        MenuHandler.printMenu();
+        while (true) {
 
-        switch (UserInputHandler.getMenuOptionFromUser()) {
+            MenuHandler.printMenu();
 
-            case DISPLAY_INFORMATION_ABOUT_RANDOM_MOVIE:
+            switch (UserInputHandler.getMenuOptionFromUser()) {
+
+                case DISPLAY_INFORMATION_ABOUT_RANDOM_MOVIE:
+                    movieLibrary.getRandomMovieInformation();
+
                     break;
-            case DISPLAY_ACTOR_MOVIES:
+                case DISPLAY_ACTOR_MOVIES:
+                    movieLibrary.getActorFilmography();
                     break;
-            case QUIT:
-                System.out.println("Quitting");
-                System.exit(1);
+                case QUIT:
+                    System.out.println("Quitting");
+                    System.exit(1);
+            }
         }
     }
 }

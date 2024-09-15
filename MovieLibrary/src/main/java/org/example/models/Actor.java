@@ -6,7 +6,7 @@ public class Actor {
 
     private String firstName;
     private String lastName;
-    private List<Movie> listOfMovies;
+    //private List<Movie> listOfMovies;
 
     public Actor(String firstName, String lastName) {
         this.firstName = firstName;
@@ -29,20 +29,20 @@ public class Actor {
         this.lastName = lastName;
     }
 
-    public List<Movie> getListOfMovies() {
+   /* public List<Movie> getListOfMovies() {
         return listOfMovies;
     }
 
     public void setListOfMovies(List<Movie> listOfMovies) {
         this.listOfMovies = listOfMovies;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "Actor{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", listOfMovies=" + listOfMovies +
+                //", listOfMovies=" + listOfMovies +
                 '}';
     }
 }

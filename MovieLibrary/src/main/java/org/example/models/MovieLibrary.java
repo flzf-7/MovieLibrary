@@ -1,7 +1,12 @@
 package org.example.models;
 
+import org.example.handlers.RandomDataHandler;
+import org.example.handlers.UserInputHandler;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 
 public class MovieLibrary {
 
@@ -43,6 +48,42 @@ public class MovieLibrary {
 
     public static List<Movie> getMoviesLibrary() {
         return moviesLibrary;
+    }
+
+
+    public void getRandomMovieInformation() {
+
+        System.out.println(moviesLibrary.get(RandomDataHandler.getRandomMovieIndex()));
+
+    }
+
+    public void getActorFilmography() {
+
+        Actor actor = UserInputHandler.getActorFromUser();
+        List<String> actorFilmographyList = getActorFilmographyList(actor);
+        if (actorFilmographyList.isEmpty()) {
+            System.out.println(actor + " didn't play in any movie from library.");
+        } else {
+            System.out.println("Actor " + actor + " have played in movies:");
+            String separator = "";
+
+            for (String movie : actorFilmographyList) {
+                System.out.print(separator + movie);
+                separator = ", ";
+            }
+        }
+
+    }
+
+    private List<String> getActorFilmographyList(Actor actorToFind) {
+        Predicate<Movie> movieCheck = movie -> movie.getListOfActors().stream()
+                .anyMatch(actor -> actor.getFirstName().equals(actorToFind.getFirstName()) &&
+                        actor.getLastName().equals(actorToFind.getLastName()));
+
+        return moviesLibrary.stream()
+                .filter(movieCheck)
+                .map(Movie::getTitle)
+                .collect(Collectors.toList());
     }
 
 }
